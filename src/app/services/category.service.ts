@@ -12,8 +12,8 @@ export class CategoryService extends BaseService{
     super();
    }
    getAll(){
-    var url = this.baseUrl + 'category/';
-    return this.http.get<Category>(url);
+    var url = this.baseUrl + 'category';
+    return this.http.get<Category[]>(url);
    }
    getById(id:Number){
     var url = this.baseUrl + 'category/' + id;
