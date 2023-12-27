@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
-import { Transaction } from 'app/types/Transaction';
+import { Transaction } from '../types/Transaction';
 
 @Injectable({
   providedIn: 'root'
