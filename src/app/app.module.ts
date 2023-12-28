@@ -9,6 +9,10 @@ import { CategoryComponent } from './components/category/category.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CreateTransactionComponent } from './components/create-transaction/create-transaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreatecategoryComponent } from './components/createcategory/createcategory.component';
+import { LoginComponent } from './core/login/login.component';
+import { LayoutComponent } from './core/layout/layout.component';
+import { DashboardComponent } from './core/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CategoryComponent,
     TransactionsComponent,
     TransactiondetailsComponent,
-    CreateTransactionComponent
+    CreateTransactionComponent,
+    CreatecategoryComponent,
+    LoginComponent,
+    LayoutComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

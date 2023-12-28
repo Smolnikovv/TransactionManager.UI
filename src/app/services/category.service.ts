@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Category } from '../types/Category';
 import { CreateCategory } from '../types/CreateCategory';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,11 @@ export class CategoryService extends BaseService{
     var url = this.baseUrl + 'category/' + id;
     return this.http.get<Category>(url);
    }
-   postCategory(category:CreateCategory){
+   postCategory(category:CreateCategory): Observable<any>{
     var url = this.baseUrl + 'category';
-    this.http.post(url,category);
+    return this.http.post(url,category).pipe(
+      map((response: any) => response),
+      catchError((error: any) => throwError(error)
+      ));
    }
 }
