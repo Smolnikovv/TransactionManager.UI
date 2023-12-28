@@ -1,4 +1,3 @@
-<tr *ngFor="let item of categories">
-    <td>{{ item.id }} </td>
-    <td>{{ item.name }} </td>
-</tr>
+<select (change)="onSelectChange($event)">
+    <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
+</select>
