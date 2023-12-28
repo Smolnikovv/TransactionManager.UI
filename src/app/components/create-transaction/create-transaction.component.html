@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="name">
+        Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+
+    <label for="amount">
+        Wartość
+    </label>
+    <input id="amount" type="text" formControlName="amount">
+    <label for="category">
+        Kategoria
+    </label>
+    <app-category (emiter)="getCategory($event)"></app-category>>
+    
+    <button class="button" type="submit">Potwierdź</button>
+</form>

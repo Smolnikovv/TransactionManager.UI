@@ -7,18 +7,22 @@ import { TransactionsComponent } from './components/transactions/transactions.co
 import { TransactiondetailsComponent } from './components/transactiondetails/transactiondetails.component';
 import { CategoryComponent } from './components/category/category.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CreateTransactionComponent } from './components/create-transaction/create-transaction.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     TransactionsComponent,
-    TransactiondetailsComponent
+    TransactiondetailsComponent,
+    CreateTransactionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
