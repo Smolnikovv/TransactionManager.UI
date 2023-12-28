@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base.service';
+import { TokenResponse } from 'src/app/types/TokenResponse';
 
 @Component({
   selector: 'app-login',
@@ -19,23 +20,17 @@ export class LoginComponent extends BaseService {
   }
   onLogin(){
     var url = this.baseUrl + 'authorization/login'
-    this.http.post<string>(url,this.loginObj)
+    this.http.post<TokenResponse>(url,this.loginObj)
     .subscribe((response=>{
-      console.log(response)
-      localStorage.setItem('token',response)
+      console.log(response);
+      if(response.code != -1){
+        localStorage.setItem('token',response.token);
+        console.log(localStorage.getItem('token'));
+        this.router.navigateByUrl('/dashboard');
+      }
+      else{
+        alert("something went wrong");
+      }
     }))
-    // var s = this.http.post(url,this.loginObj,
-    //   {responseType: 'text'}).subscribe((response:any)=>
-    //   response.text);
-    // console.log(s);
-    // .subscribe((response: any) => {
-    //   if(response.result){
-    //     console.log('nice')
-    //     this.router.navigateByUrl('/dashboard');
-    //   }
-    //   else{
-    //     console.log('no bueno')
-    //   }
-    //   })
     }
 }
