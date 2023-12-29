@@ -12,6 +12,7 @@ import { CreatecategoryComponent } from './components/createcategory/createcateg
 import { LoginComponent } from './core/login/login.component';
 import { LayoutComponent } from './core/layout/layout.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
+import { AccountbalanceComponent } from './components/accountbalance/accountbalance.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DashboardComponent } from './core/dashboard/dashboard.component';
     CreatecategoryComponent,
     LoginComponent,
     LayoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    AccountbalanceComponent
   ],
   imports: [
     BrowserModule,

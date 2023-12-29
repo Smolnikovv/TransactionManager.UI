@@ -1,12 +1,5 @@
-<!-- <div class="main">  	
-        <div class="signup">
-            <form>
-                <label for="chk" aria-hidden="true">Sign up</label>
-                <input type="text" name="name" placeholder="User name" required="">
-                <input type="password" name="password" placeholder="Password" required="">
-                <button>Sign up</button>
-            </form>
-        </div> -->
+<div class="main">  	
+       
 
         <div class="login">
             <form>
@@ -16,4 +9,13 @@
                 <button (click)="onLogin()">Login</button>
             </form>
         </div>
-<!-- </div> -->
+
+         <div class="signup">
+            <form>
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" [(ngModel)]="registerObj.name" name="name" placeholder="User name" required="">
+                <input type="password" [(ngModel)]="registerObj.password" name="password" placeholder="Password" required="">
+                <button (click)="onRegister()">Sign up</button>
+            </form>
+        </div> 
+ </div> 

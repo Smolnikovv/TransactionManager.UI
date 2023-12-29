@@ -11,7 +11,6 @@ import { User } from 'src/app/types/User';
   styleUrls: ['./create-transaction.component.css']
 })
 export class CreateTransactionComponent {
-  private user!: User
   constructor(
     private transactionService: TransactionService,
     private formBuilder: FormBuilder,
@@ -27,24 +26,34 @@ export class CreateTransactionComponent {
     this.form.controls['categoryId'].setValue(value);
   }
   onSubmit():void{
+    var user!:User;
     const formData = this.form.value as CreateTransaction;
     this.userService.getById(formData.userId).subscribe(
       response => {
-        this.user=response
+        user = response
+        if(user.accountBalance > formData.amount)
+        {
+          this.transactionService.postTransaction(formData).subscribe(
+            response => {
+              console.log('Poprawnie',response);
+            },
+            error=>{
+              console.error('Błąd',error);
+            });
+            user.accountBalance = user.accountBalance - formData.amount;
+            console.log(user);
+            this.userService.changeAccountBalance(user, user.id).subscribe(
+              response => {
+                alert("dodano tranzakcje");
+                window.location.reload()
+              },
+              error => {
+                console.error('Błąd podczas aktualizacji stanu konta', error);
+              }
+            );
+        }
       }
     )
-    if(this.user.accountBalance<formData.amount)
-    {
-      this.transactionService.postTransaction(formData).subscribe(
-        response => {
-          console.log('Poprawnie',response);
-        },
-        error=>{
-          console.error('SAD',error);
-        });
-        var newAccountBallance = this.user.accountBalance - formData.amount;
-        this.userService.changeAccountBallance(newAccountBallance,this.user.id)
-    }
     
   }
 }

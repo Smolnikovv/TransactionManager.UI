@@ -24,6 +24,5 @@ export class TransactionsComponent implements OnInit {
         this.cdr.detectChanges();
       }
     })
-    console.log(this.transactions);
   }
 }

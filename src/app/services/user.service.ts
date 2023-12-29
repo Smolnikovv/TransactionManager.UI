@@ -17,11 +17,11 @@ export class UserService extends BaseService {
     return this.http.get<User>(url);
   }
   postUser(user:CreateUser){
-    var url = this.baseUrl + 'user';
-    this.http.post(url,user);
+    var url = this.baseUrl + 'authorization/register';
+    return this.http.post<number>(url,user);
   }
-  changeAccountBallance(amount: number, id: number){
+  changeAccountBalance(user: User, id: number){
     var url = this.baseUrl + 'user/' + id;
-    this.http.put(url,"accountBallance:"+amount);
+    return this.http.put<number>(url,user);
   }
 }
