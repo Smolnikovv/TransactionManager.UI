@@ -19,7 +19,7 @@ export class CreatecategoryComponent {
     const formData = this.form.value as CreateCategory;
     this.categoryService.postCategory(formData).subscribe(
       respons => {
-
+        this.form.reset();
       },
       error =>{
         console.error("bad request",error)

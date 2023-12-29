@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base.service';
 import { TokenResponse } from 'src/app/types/TokenResponse';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserService } from 'src/app/services/user.service';
+import { CreateUser } from 'src/app/types/CreateUser';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +17,15 @@ export class LoginComponent extends BaseService {
     "name":"",
     "password":""
   }
-
+  registerObj:any ={
+    "name":"",
+    "password":""
+  }
   
 
   helper = new JwtHelperService();
 
-  constructor(private http:HttpClient, private router: Router) {  
+  constructor(private http:HttpClient, private router: Router,private userService: UserService) {  
     super();
     if(localStorage.getItem('token') != null)
     {
@@ -29,7 +34,6 @@ export class LoginComponent extends BaseService {
   }
 
   onLogin(){
-    console.log("test");
     
     var url = this.baseUrl + 'authorization/login'
     this.http.post<TokenResponse>(url,this.loginObj)
@@ -37,13 +41,9 @@ export class LoginComponent extends BaseService {
       if(response.code != -1){
         const decodedToken = this.helper.decodeToken(response.token);
 
-        console.log(decodedToken);
-
         localStorage.setItem('token',response.token);
         localStorage.setItem('userId',decodedToken.UserId);
         localStorage.setItem('accountBalance', decodedToken.AccountBalance);
-        console.log(localStorage.getItem('userId'));
-        console.log(localStorage.getItem('accountBalance'));
         
         
         this.router.navigateByUrl('/dashboard');
@@ -52,5 +52,20 @@ export class LoginComponent extends BaseService {
         alert("something went wrong");
       }
     }))
+    }
+    onRegister(){
+      var user: CreateUser = this.registerObj;
+      var id:number;
+      this.userService.postUser(user).subscribe((response =>{
+        id=response;
+        if(id !=0 )
+        {
+          alert("User created");
+        }
+        else
+        {
+          alert("something went wrong");
+        }
+      }))
     }
 }
