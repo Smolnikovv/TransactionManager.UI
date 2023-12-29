@@ -22,22 +22,30 @@ export class LoginComponent extends BaseService {
 
   constructor(private http:HttpClient, private router: Router) {  
     super();
-    if(localStorage.getItem('token')!='')
+    if(localStorage.getItem('token') != null)
     {
       this.router.navigateByUrl('/dashboard');
     }  
   }
 
   onLogin(){
+    console.log("test");
+    
     var url = this.baseUrl + 'authorization/login'
     this.http.post<TokenResponse>(url,this.loginObj)
     .subscribe((response=>{
       if(response.code != -1){
         const decodedToken = this.helper.decodeToken(response.token);
 
+        console.log(decodedToken);
+
         localStorage.setItem('token',response.token);
-        localStorage.setItem('userId',decodedToken.NameIdentifier);
+        localStorage.setItem('userId',decodedToken.UserId);
         localStorage.setItem('accountBalance', decodedToken.AccountBalance);
+        console.log(localStorage.getItem('userId'));
+        console.log(localStorage.getItem('accountBalance'));
+        
+        
         this.router.navigateByUrl('/dashboard');
       }
       else{

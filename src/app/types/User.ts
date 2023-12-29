@@ -1,6 +1,6 @@
 export interface User{
-    Id:number,
-    Name:string,
-    Password:string,
-    AccountBalance:number
+    id:number,
+    name:string,
+    password:string,
+    accountBalance:number
 }

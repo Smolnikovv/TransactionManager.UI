@@ -14,7 +14,8 @@ export class TransactionService extends BaseService {
     super();
   }
   getByUserId(userId:number){
-    var url = this.baseUrl + 'transaction/userId/' + userId;
+    var url = this.baseUrl + 'transaction/user/' + userId;
+    console.log(url);
     return this.http.get<Transaction[]>(url);
   }
   getById(id:number){
