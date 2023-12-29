@@ -1,0 +1,11 @@
+#allTransactions{
+    max-width: 50%;
+}
+#addCategory{
+    flex-wrap: wrap;
+    display: flex;
+}
+#addTransaction{
+    flex-wrap: wrap;
+    display: flex;
+}
