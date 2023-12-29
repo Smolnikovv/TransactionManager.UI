@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base.service';
 import { TokenResponse } from 'src/app/types/TokenResponse';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -15,17 +16,28 @@ export class LoginComponent extends BaseService {
     "password":""
   }
 
-  constructor(private http:HttpClient, private router: Router) {            
+  
+
+  helper = new JwtHelperService();
+
+  constructor(private http:HttpClient, private router: Router) {  
     super();
+    if(localStorage.getItem('token')!='')
+    {
+      this.router.navigateByUrl('/dashboard');
+    }  
   }
+
   onLogin(){
     var url = this.baseUrl + 'authorization/login'
     this.http.post<TokenResponse>(url,this.loginObj)
     .subscribe((response=>{
-      console.log(response);
       if(response.code != -1){
+        const decodedToken = this.helper.decodeToken(response.token);
+
         localStorage.setItem('token',response.token);
-        console.log(localStorage.getItem('token'));
+        localStorage.setItem('userId',decodedToken.NameIdentifier);
+        localStorage.setItem('accountBalance', decodedToken.AccountBalance);
         this.router.navigateByUrl('/dashboard');
       }
       else{
