@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
-import { TransactiondetailsComponent } from './components/transactiondetails/transactiondetails.component';
 import { CategoryComponent } from './components/category/category.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CreateTransactionComponent } from './components/create-transaction/create-transaction.component';
@@ -19,7 +18,6 @@ import { DashboardComponent } from './core/dashboard/dashboard.component';
     AppComponent,
     CategoryComponent,
     TransactionsComponent,
-    TransactiondetailsComponent,
     CreateTransactionComponent,
     CreatecategoryComponent,
     LoginComponent,

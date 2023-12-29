@@ -20,4 +20,8 @@ export class UserService extends BaseService {
     var url = this.baseUrl + 'user';
     this.http.post(url,user);
   }
+  changeAccountBallance(amount: number, id: number){
+    var url = this.baseUrl + 'user/' + id;
+    this.http.put(url,"accountBallance:"+amount);
+  }
 }

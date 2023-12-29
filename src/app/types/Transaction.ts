@@ -1,7 +1,7 @@
 export interface Transaction{
-    Id:number,
-    Name:string,
-    Amount:number,
-    CategoryId:number,
-    CategoryName:string
+    id:number,
+    name:string,
+    amount:number,
+    categoryId:number,
+    categoryName:string
 }
