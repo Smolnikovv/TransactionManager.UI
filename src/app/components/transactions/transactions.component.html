@@ -1,4 +1,5 @@
-<form>
-    <input type="number"><label> wpisz wartość</label>
-    <app-category></app-category>
-</form>
+<tr *ngFor="let item of transactions">
+    <td> {{ item.name }}</td>
+    <td> {{ item.amount }}</td>
+    <td> {{ item.categoryName }}</td>
+</tr>

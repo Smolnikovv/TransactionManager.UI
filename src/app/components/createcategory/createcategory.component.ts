@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { CategoryService } from 'src/app/services/category.service';
+import { CreateCategory } from 'src/app/types/CreateCategory';
 
 @Component({
   selector: 'app-createcategory',
@@ -6,5 +9,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./createcategory.component.css']
 })
 export class CreatecategoryComponent {
+  constructor(
+    private categoryService: CategoryService,
+    private formBuilder: FormBuilder){}
+    form = this.formBuilder.group({
+      name:'',
+    })
+  onSubmit():void{
+    const formData = this.form.value as CreateCategory;
+    this.categoryService.postCategory(formData).subscribe(
+      respons => {
 
+      },
+      error =>{
+        console.error("bad request",error)
+      }
+    )
+  }
 }
